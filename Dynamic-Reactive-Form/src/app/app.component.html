@@ -5,7 +5,7 @@
 <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" class="form-grid">
   <div *ngFor="let field of formConfig" class="form-row">
     <label>{{field.label}}:</label>
-    <input *ngIf="field.type === 'text' || field.type === 'email'" [type]="field.type" [formControlName]="field.name">
+    <input *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'number'" [type]="field.type" [formControlName]="field.name">
     <select *ngIf="field.type === 'select'" [formControlName]="field.name">
       <option *ngFor="let option of field.options">
         {{option}}

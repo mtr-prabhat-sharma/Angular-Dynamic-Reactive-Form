@@ -25,6 +25,12 @@ export class AppComponent implements OnInit {
       name: 'email',
       validators: ['required', 'email'],
     },
+     {
+      type: 'number',
+      label: 'Phone Number',
+      name: 'phone',
+      validators: ['required', 'phone'],
+    },
     {
       type: 'select',
       label: 'Country',
@@ -45,7 +51,10 @@ export class AppComponent implements OnInit {
       if (item.validators.includes('email')) {
         validators.push(Validators.email);
       }
-      group[item.name] = new FormControl('', validators)
+      if(item.validators.includes('phone')) {
+        validators.push(Validators.pattern('^[0-9]{10}$')); 
+      }
+      group[item.name] = new FormControl('', validators);
     });
     this.dynamicForm = new FormGroup(group);
   }
